@@ -1,0 +1,53 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+
+\usepackage{lettrine}
+
+\usepackage[copyright]{ccicons}
+\usepackage{url}
+
+% Fonts
+\usepackage{Royal}
+\usepackage{pgothic}
+\usepackage{Alegreya}
+
+\aliaspagestyle{part}{empty}
+
+\chapterstyle{veelo}
+
+% Ensure part title always goes on the right page
+% (memoir documentation says it should, but it doesn't seem to)
+\renewcommand*{\beforepartskip}{\cleartorecto\thispagestyle{part}\null\vfil}
+
+% Addition of a \subtitle command based on the version of \title
+% in the titling packge.
+\def\subtitle#1{%
+  \gdef\@subtitle{#1}
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \renewcommand{\thanksmark}[1]{}
+    \renewcommand{\thanksgap}[1]{}
+    \protected@xdef\thesubtitle{#1}
+  \endgroup}
+   \def\@subtitle{}
+
+% Use this instead of \maketitle
+\newcommand*{\factionstitle}{\begingroup
+\centering
+\vspace*{0.08\textheight}
+{\pgothfamily\HUGE\bfseries \@title}\\[\baselineskip]
+{\scshape \@subtitle}\\[\baselineskip]
+{\scshape by}\\[\baselineskip]
+{\large\scshape \@author}\par
+\endgroup}
+
+% Try and handle overfull hboxes
+\setlength{\emergencystretch}{2pt}
+
+% Lettrine formatting
+\setlength{\DefaultNindent}{0em}
+\setcounter{DefaultLines}{3}
+\newcommand*\initletter{\Royal}
+\renewcommand{\LettrineFontHook}{\initletter}
