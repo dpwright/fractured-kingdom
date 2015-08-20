@@ -2,7 +2,9 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{graphicx}
+\usepackage{xcolor}
 
+\usepackage{titling}
 \usepackage{lettrine}
 
 \usepackage[copyright]{ccicons}
@@ -12,14 +14,6 @@
 \usepackage{Royal}
 \usepackage{pgothic}
 \usepackage{Alegreya}
-
-\aliaspagestyle{part}{empty}
-
-\chapterstyle{veelo}
-
-% Ensure part title always goes on the right page
-% (memoir documentation says it should, but it doesn't seem to)
-\renewcommand*{\beforepartskip}{\cleartorecto\thispagestyle{part}\null\vfil}
 
 % Addition of a \subtitle command based on the version of \title
 % in the titling packge.
@@ -37,7 +31,7 @@
 \newcommand*{\factionstitle}{\begingroup
 \centering
 \vspace*{0.08\textheight}
-{\pgothfamily\HUGE\bfseries \@title}\\[\baselineskip]
+{\pgothfamily\Huge\bfseries \@title}\\[\baselineskip]
 {\scshape \@subtitle}\\[\baselineskip]
 {\scshape by}\\[\baselineskip]
 {\large\scshape \@author}\par
@@ -51,3 +45,33 @@
 \setcounter{DefaultLines}{3}
 \newcommand*\initletter{\Royal}
 \renewcommand{\LettrineFontHook}{\initletter}
+
+% Title styling
+\usepackage{titlesec}
+
+\titleformat{\part}[display]
+  {\thispagestyle{empty}\centering\bfseries\Huge}
+  {\Large{\partname} {\thepart}}
+  {0pt}
+  {}
+
+% Chapter style based on the one from this thread:
+%   http://tex.stackexchange.com/questions/165878/width-of-chapter-section-with-titlesec
+\newcommand\factionschapformat[1]{%
+  \parbox[b]{\dimexpr\textwidth-3em\relax}{\raggedright#1}}
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {\vspace{-8em}\raggedleft{
+    {\color{gray}\rule[-5pt]{2pt}{5cm}}\quad
+    {\color{gray}\fontsize{60}{60}\selectfont\thechapter}
+    }
+  }
+  {-2.1em}
+  {\factionschapformat}
+
+\titleformat{\subsection}
+  {\bfseries\large}
+  {}
+  {0pt}
+  {}
+  [\titlerule]
