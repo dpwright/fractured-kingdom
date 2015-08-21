@@ -78,3 +78,14 @@
   [\titlerule]
 
 \setcounter{secnumdepth}{0}
+
+% Appendix styling (http://tex.stackexchange.com/questions/37357/no-page-number-on-appendixpage)
+\usepackage{appendix}
+\let\plainappendixpage\appendixpage
+\makeatletter
+\renewcommand{\appendixpage}{%
+  \begingroup
+  \let\ps@plain\ps@empty
+  \plainappendixpage
+  \endgroup}
+\makeatother
