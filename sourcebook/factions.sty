@@ -1,9 +1,9 @@
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage[pass]{geometry}
 \usepackage{graphicx}
-\usepackage{xcolor}
+\usepackage[svgnames]{xcolor}
 
 \usepackage{titling}
 \usepackage{lettrine}
@@ -14,10 +14,26 @@
 
 \usepackage{fmtcount}
 
+\usepackage{wrapfig}
+
 % Fonts
-\usepackage{Royal}
+%\usepackage{Royal}
+%Setting this up manually as texpad doesn't have the Royal package (cfr-initials)
+%The following is just the contents of that package pasted in-place
+\input RoyalIn.fd
+\DeclareRobustCommand{\Royal}{%
+        \fontencoding{U}%
+        \fontseries{xl}%
+        \fontshape{n}%
+        \fontfamily{RoyalIn}%
+        \selectfont}
+\DeclareTextFontCommand{\royal}{\Royal}
+
 \usepackage{pgothic}
-\usepackage{Alegreya}
+
+%Using this font instead of Alegreya, which isn't available in texpad
+\usepackage{baskervald}
+%\usepackage{Alegreya}
 
 % Addition of a \subtitle command based on the version of \title
 % in the titling packge.
@@ -38,7 +54,9 @@
 {\fontsize{40}{30}\selectfont\textsc{\@title}}\\[\baselineskip]
 {\scshape \@subtitle}\\[\baselineskip]
 {\scshape by}\\[\baselineskip]
-{\large\scshape \@author}\par
+{\large\scshape \@author}\\[\baselineskip]
+\vspace*{0.125\textheight}
+\includegraphics[width=0.75\textwidth]{images/sabilia-mark.jpg}\par
 \endgroup}
 
 % Try and handle overfull hboxes
@@ -66,8 +84,8 @@
 \titleformat{\chapter}[display]
   {\Huge}
   {\vspace{-8em}\raggedleft{
-    {\color{gray}\rule[-5pt]{2pt}{5cm}}\quad
-    {\color{gray}\fontsize{60}{60}\selectfont\thechapter}
+    {\color{RoyalBlue}\rule[-5pt]{2pt}{5cm}}\quad
+    {\color{RoyalBlue}\fontsize{60}{60}\selectfont\thechapter}
     }
   }
   {-2.1em}
